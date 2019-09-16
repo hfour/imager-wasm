@@ -12,10 +12,16 @@ cargo install wasm-pack
 ~/.cargo/bin/wasm-pack build --release -t nodejs
 ```
 
-# Example
+# Example usage from node:
 
 ```
-...
+fs = require('fs');
+img1 = fs.readFileSync('problem.jpg');
+
+m = require('./pkg/normalize_image_wasm');
+img2 = m.normalize(img1);
+
+fs.writeFileSync('solution.jpg', img2);
 ```
 
 # References
