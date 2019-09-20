@@ -1,8 +1,13 @@
-# Normalize Images
+# imager-wasm
 
-This simple module does only one thing. Given an image buffer containing
-a GIF, PNG or JPEG, resize it to the given size. Use the [image-rs](https://github.com/image-rs/image)
-library, and compile to wasm for nodejs usage.
+This a simple package to compile selected functions from the [image-rs](https://github.com/image-rs/image)
+rust package to wasm, and make them available to nodejs. It's configured to support at least GIF, PNG and JPEG (but this
+may vary depending on our needs).
+
+We don't wrap the whole of `image-rs` because the `.wasm` file will be too big, and then there's no nodejs
+build system that could only take parts of that .wasm file. The rust linker though will only include the used
+functions in the `.wasm` file.
+
 
 # Setup
 
@@ -12,7 +17,7 @@ cargo install wasm-pack
 ~/.cargo/bin/wasm-pack build --release -t nodejs
 ```
 
-# Example usage from node:
+# Example usage from node (sync code):
 
 ```
 fs = require('fs');
