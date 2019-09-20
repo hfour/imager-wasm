@@ -18,7 +18,7 @@ cargo install wasm-pack
 fs = require('fs');
 img1 = fs.readFileSync('problem.jpg');
 
-m = require('./pkg/normalize_image_wasm');
+m = require('./pkg/imager_wasm');
 img2 = m.normalize(img1);
 
 fs.writeFileSync('solution.jpg', img2);

@@ -1,9 +1,9 @@
 [package]
-name = "normalize-image-wasm"
+name = "imager-wasm"
 version = "0.1.0"
 authors = ["Damjan Georgievski <gdamjan@hfour.com>"]
-repository = "https://github.com/hfour/normalize-image-wasm"
-description = "take an image buffer, returns a thumbnail, fixed size"
+repository = "https://github.com/hfour/imager-wasm"
+description = "selected image-rs function into wasm for nodejs"
 readme = "README.md"
 license = "MIT"
 edition = "2018"

@@ -19,7 +19,7 @@ if (isMainThread) {
     });
   };
 } else {
-  const m = require('../pkg/normalize_image_wasm');
+  const m = require('../pkg/imager_wasm');
   const srcImg = workerData; // this is magic
   const dstImg = m.normalize(srcImg);
   parentPort.postMessage(m.normalize(dstImg));
