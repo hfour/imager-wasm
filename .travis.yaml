@@ -1,0 +1,21 @@
+language: rust
+rust: stable
+
+script:
+  - cargo build
+  - cargo test
+
+before_deploy:
+  - rustup target add wasm32-unknown-unknown
+  - cargo install wasm-pack
+  - ~/.cargo/bin/wasm-pack build --release -t nodejs --scope hfour
+
+deploy:
+  provider: npm
+  email: "YOUR_EMAIL_ADDRESS"
+  api_key: "YOUR_AUTH_TOKEN"
+  on:
+    tags: true
+    branch: master
+  src: ./pkg
+  edge: true
