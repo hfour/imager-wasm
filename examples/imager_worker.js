@@ -5,10 +5,10 @@ const {
 } = require('worker_threads');
 
 if (isMainThread) {
-  module.exports = function normalize(img) {
+  module.exports = function thumbnail(img, width, height) {
     return new Promise((resolve, reject) => {
       const worker = new Worker(__filename, {
-        workerData: img
+        workerData: [img, width, height]
       });
       worker.on('message', resolve);
       worker.on('error', reject);
@@ -19,8 +19,9 @@ if (isMainThread) {
     });
   };
 } else {
+  // this runs in a worker thread, and syncronously calls into wasm
   const m = require('../pkg/imager_wasm');
-  const srcImg = workerData; // this is magic
-  const dstImg = m.normalize(srcImg);
-  parentPort.postMessage(m.normalize(dstImg));
+  const [img, width, height] = workerData; // this is magic
+  const dstImg = m.thumbnail(img, width, height);
+  parentPort.postMessage(dstImg);
 }

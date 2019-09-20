@@ -4,11 +4,12 @@ const process = require('process');
 const fs = require('fs');
 
 const img = fs.readFileSync('problem.jpg');
-const normalize = require('./normalize_worker');
+const thumbnail = require('./imager_worker');
 
-normalize(img)
-   .then(normalized => fs.writeFileSync('solution.jpg', normalized))
-   .then(_=> process.exit());
+thumbnail(img, 800, 800)
+   .then(thumb => fs.writeFileSync('solution.jpg', thumb))
+   .then(_=> process.exit(0))
+   .catch(_=> process.exit(1));
 
 setInterval(function () {
     console.log('tick/tock (50ms)');
