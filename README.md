@@ -19,7 +19,7 @@ fs = require('fs');
 img1 = fs.readFileSync('problem.jpg');
 
 m = require('./pkg/imager_wasm');
-img2 = m.normalize(img1);
+img2 = m.thumbnail(img1, 800, 800);
 
 fs.writeFileSync('solution.jpg', img2);
 ```

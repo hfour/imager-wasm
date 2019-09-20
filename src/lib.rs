@@ -2,7 +2,7 @@ use image;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen(catch)]
-pub fn normalize(bytes: &[u8]) -> Result<Box<[u8]>, JsValue> {
+pub fn thumbnail(bytes: &[u8], width: u32, height: u32) -> Result<Box<[u8]>, JsValue> {
     let img = image::load_from_memory(&bytes)
         .map_err(|err| JsValue::from(format!("{}", err)))?;
 
@@ -11,7 +11,7 @@ pub fn normalize(bytes: &[u8]) -> Result<Box<[u8]>, JsValue> {
 
     let mut buf: Vec<u8> = Vec::new();
 
-    let thumbnail = img.thumbnail(800, 800);
+    let thumbnail = img.thumbnail(width, height);
     thumbnail
         .write_to(&mut buf, format)
         .map_err(|err| JsValue::from(format!("{}", err)))?;
