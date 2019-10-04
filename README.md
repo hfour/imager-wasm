@@ -37,3 +37,10 @@ fs.writeFileSync('solution.jpg', img2);
 * https://rustwasm.github.io/docs/wasm-bindgen/
 * https://www.joyent.com/blog/improved-wasm-support-coming-to-node
 * https://dev.to/dandyvica/wasm-in-rust-without-nodejs-2e0c
+
+# Making a release on npmjs
+
+This repo has travis configured to publish the build node package on npmjs. When a commit on the master branch is
+tagged, travis will try to push the package to npmjs. The version of the node package is copied from `Cargo.toml`, so
+it's up to you make sure the version is updated accordingly. The tag name is not used, but should follow the version in
+`Cargo.toml` (and so the node package version). For example, the 0.1.0 version should be tagged as `v0.1.0`.
