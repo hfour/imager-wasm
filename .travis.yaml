@@ -1,0 +1,11 @@
+language: rust
+rust: stable
+
+script:
+  - cargo build
+  - cargo test
+
+before_deploy:
+  - rustup target add wasm32-unknown-unknown
+  - cargo install wasm-pack
+  - ~/.cargo/bin/wasm-pack build --release -t nodejs --scope hfour
