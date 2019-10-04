@@ -9,3 +9,15 @@ before_deploy:
   - rustup target add wasm32-unknown-unknown
   - cargo install wasm-pack
   - ~/.cargo/bin/wasm-pack build --release -t nodejs --scope hfour
+
+# use dpl2 for the src: option
+deploy:
+  edge: true
+  provider: npm
+  email: gdamjan@hfour.com
+  api_key:
+    secure: "uk+PIgO0ixURcqlOQ561xADcgBhg5iYYx1B7eXs3n4+vLPrxMMmMmkfwo3UbU9lYzEJcPBKL/P7w9CApJDeog7CH5TtF3JHt1xjq4BjeyvVNHqsHy/x6LHFgFhN3IR5IZwxuVHL853yh2z/zbSsE4cLu26Hx2AESYRn9GZWT4SX7XF0iKLQhORNSir5xC49r2El+hgrCzSE7Y5UaGpA0UITTQrpaoZF8ZltYHINk4yB9tWozDdEFabRnONQ31aWvBijocopyN8ifazccd/YqM0bsyCFWHHht9r7LH7sCiarJL05z0mnfDv79K2UEYC68xCMDY3V/1Mp1WkFosGwKwlrsFP5RlGkmifXyWvNDQDaFyUTuk+ZQSKbUX1BEbbfTpVKpwN+hZBJFuVX1Q10ojitiE57ahx+BhRyEo63pYQ5TG9fPvT8YIMXGvLicbOeu9+2EqZzizF6yg8nV3EIPmR7xoghGHbwERv3tcjj0Nii4U6Lq23XkORZPIyIZ52HCBaDq75fgb9i+jEPnkGhtQfW57f3D4TqLkhvpa2KV/YdvfuC9D6g6lPH3h9h2W7PHfWPBG8Sh02rLCYEumqCASUgrPFte7irVZ4OOePDP158zXzMylusteyAlJaR/zIl/LdLw+DISkc042ZDDwC5igdaRpVxNpQfUB3w1A0Q42CI="
+  on:
+    tags: true
+    branch: master
+  src: ./pkg
