@@ -1,5 +1,7 @@
 # imager-wasm
 
+[![Build Status](https://travis-ci.org/hfour/imager-wasm.svg?branch=master)](https://travis-ci.org/hfour/imager-wasm)
+
 This a simple package to compile selected functions from the [image-rs](https://github.com/image-rs/image)
 rust package to wasm, and make them available to nodejs. It's configured to support at least GIF, PNG and JPEG (but this
 may vary depending on our needs).
